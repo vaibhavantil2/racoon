@@ -112,32 +112,30 @@ export const GTMBodyScript = () => {
     </noscript>
   )
 }
-/*
-export const TikTokPixelScript = () => {
-  const TIKTOK_PIXEL_ID = "YOUR_TIKTOK_PIXEL_ID"; // Replace with your actual TikTok Pixel ID
 
-  if (!TIKTOK_PIXEL_ID) return null;
+export const PinterestTagScript = () => {
+  const PINTEREST_TAG_ID = process.env.REACT_APP_PINTEREST_TAG_ID; // Replace with your environment variable
+
+  if (!PINTEREST_TAG_ID) return null;
+
+  const pinterestScript = `
+    !function(e){if(!window.pintrk){window.pintrk = function () {
+    window.pintrk.queue.push(Array.prototype.slice.call(arguments))};var
+    n=window.pintrk;n.queue=[],n.version="3.0";var
+    t=document.createElement("script");t.async=!0,t.src=e;var
+    r=document.getElementsByTagName("script")[0];
+    r.parentNode.insertBefore(t,r)}}("https://s.pinimg.com/ct/core.js");
+    pintrk('load', '${PINTEREST_TAG_ID}');
+    pintrk('page');
+  `;
 
   return (
-    <Script
-      id="tiktok-pixel-base"
-      strategy="lazyOnload"
-      dangerouslySetInnerHTML={{
-        __html: `
-          !function(w,d,t) {
-              var s = d.createElement(t), m = d.getElementsByTagName(t)[0];
-              s.async = 1;
-              s.src = "https://analytics.tiktok.com/i18n/pixel/sdk.js";
-              m.parentNode.insertBefore(s, m);
-              w.ttq = w.ttq || [];
-              w.ttq.push('init', '${TIKTOK_PIXEL_ID}');
-          }(window, document, 'script');
-        `,
-      }}
-    />
+    <script dangerouslySetInnerHTML={{ __html: pinterestScript }} />
   );
-}; 
-*/
+};
+
+
+
 export type AppTrackingContext = {
   countryCode: CountryCode
 }
