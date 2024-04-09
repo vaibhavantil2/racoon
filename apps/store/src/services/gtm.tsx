@@ -112,14 +112,14 @@ export const GTMBodyScript = () => {
     </noscript>
   )
 }
-
+/*
 export const TikTokPixelScript = () => {
   const TIKTOK_PIXEL_ID = "YOUR_TIKTOK_PIXEL_ID"; // Replace with your actual TikTok Pixel ID
 
   if (!TIKTOK_PIXEL_ID) return null;
 
   return (
-    <Script
+   <Script
       id="tiktok-pixel-base"
       strategy="lazyOnload"
       dangerouslySetInnerHTML={{
@@ -137,7 +137,7 @@ export const TikTokPixelScript = () => {
     />
   );
 }; 
-
+*/
 export type AppTrackingContext = {
   countryCode: CountryCode
 }
