@@ -138,6 +138,37 @@ export const TikTokPixelScript = () => {
   );
 }; 
 
+export const SnapPixelScript = () => {
+  const SNAP_PIXEL_ID = "YOUR_SNAP_PIXEL_ID"; // Replace with your actual Snap Pixel ID
+
+  if (!SNAP_PIXEL_ID) return null;
+
+  return (
+    <Script
+      id="snap-pixel-base"
+      strategy="lazyOnload"
+      dangerouslySetInnerHTML={{
+        __html: `
+          !(function(e,t,n){if(e.snaptr)return;
+          var a=e.snaptr=function(){a.handleRequest?a.handleRequest.apply(a,arguments):a.queue.push(arguments)};
+          a.queue=[];
+          var s='script';
+          var r=t.createElement(s);
+          r.async=!0;
+          r.src=n;
+          var u=t.getElementsByTagName(s)[0];
+          u.parentNode.insertBefore(r,u);
+          })(window,document,'https://sc-static.net/scevent.min.js');
+
+          snaptr('init', '${SNAP_PIXEL_ID}');
+          snaptr('track', 'PAGE_VIEW');
+        `,
+      }}
+    />
+  );
+};
+
+
 export type AppTrackingContext = {
   countryCode: CountryCode
 }
